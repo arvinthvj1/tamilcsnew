@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = window.location.origin+'/api/crud/allCrud';
+const BASE_URL = 'https://tamilcsnew-x14e-8j6v6c0e6-arvinths-projects-ff671314.vercel.app'+"/api/crud/allCrud";
 
 export const fetchData = async (collectionName, pipeline) => {
   console.log("pipeline",pipeline)

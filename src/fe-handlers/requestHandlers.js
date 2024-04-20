@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000/api/crud/allCrud';
+const BASE_URL = window.location.origin+'/api/crud/allCrud';
 
 export const fetchData = async (collectionName, pipeline) => {
   console.log("pipeline",pipeline)

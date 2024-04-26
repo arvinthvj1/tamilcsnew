@@ -4,6 +4,7 @@ import axios from 'axios';
 import { fetchData } from "@/fe-handlers/requestHandlers";
 import ThumbCard from "@/app/components/ThumbCard";
 import ThumbCardRel from "@/app/components/ThumbCardRel";
+import VideoDisplay from "../../video_display";
 const getData = async (id) => {
     console.log("slug",id);
     let data = await fetchData("lang_videos", [
@@ -34,8 +35,6 @@ const getData = async (id) => {
 export default async function Home({ params }) {
     const data = await getData(params.id);
     const firstRelatedData = data.related_data[0];
-    // const slug = slugify(data.title);
-   // console.log(data);
     return (
         <div className="">
             <div className="bg-indigo-100 py-6 md:py-12">
@@ -44,7 +43,7 @@ export default async function Home({ params }) {
                     <div class="w-full md:w-2/3 lg:w-8/12 p-4">
                         <h1 className="text-3xl font-bold mb-5 capitalize">{data.title}</h1>
                         <div className="ratio ratio-16x9 shadow bg-white rounded-lg overflow-hidden">
-                            <iframe src={`https://www.youtube.com/embed/${firstRelatedData.video}`} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            {<VideoDisplay firstRelatedData={firstRelatedData} />}
                         </div>
                         <div className="p-3 my-3 shadow bg-white rounded-md"><div dangerouslySetInnerHTML={{ __html: data.content }} /></div>
                     </div>

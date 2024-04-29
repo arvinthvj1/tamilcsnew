@@ -72,6 +72,15 @@ const Home =async({params}) => {
       <div className="relative">
           <div className="bg-indigo-100 py-6 md:py-12">
             <div className="container px-4 mx-auto">
+                <ins class="adsbygoogle"
+                style={{display:"block"}}
+                data-ad-client="ca-pub-9831135411942124"
+                data-ad-slot="9040313622"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
               <h1 className="text-3xl font-bold text-center mb-5">
                 தமிழ் கிறிஸ்தவ பாடல்கள்
               </h1>

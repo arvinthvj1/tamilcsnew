@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
+import ScriptHandler from "./scriptHandler";
 const inter = Inter({ subsets: ["latin"] });
 
 // export const metadata = {
@@ -20,7 +22,9 @@ export default function RootLayout({ children, isLoading }) {
   return (
     <html lang="en">
       <head>
-      <meta name="google-adsense-account" content="ca-pub-9831135411942124"/>
+      {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9831135411942124"
+     crossorigin="anonymous"></script> */}
+        <ScriptHandler/>
       </head>
       <body className={inter.className}>
         <div className="header-2">

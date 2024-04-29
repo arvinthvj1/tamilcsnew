@@ -19,6 +19,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children, isLoading }) {
   return (
     <html lang="en">
+      <head>
+      <meta name="google-adsense-account" content="ca-pub-9831135411942124"/>
+      </head>
       <body className={inter.className}>
         <div className="header-2">
           <nav className="bg-white py-2 md:py-4">

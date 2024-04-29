@@ -61,6 +61,7 @@ export const generateMetadata = (props) => {
       locale: 'en_US',
       type: 'website',
     },
+    // "google-adsense-account" : 'ca-pub-9831135411942124'
   };
 };
 

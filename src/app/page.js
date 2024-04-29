@@ -7,6 +7,15 @@ export default function Home() {
         <div className="">
             <div className="bg-indigo-100 py-6 md:py-12">
                 <div className="container px-4 mx-auto">
+                <ins class="adsbygoogle"
+                style={{display:"block"}}
+                data-ad-client="ca-pub-9831135411942124"
+                data-ad-slot="9040313622"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-5">
                         {
                             Array(10).fill(0).map((_, index) => (

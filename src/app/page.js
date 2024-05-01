@@ -1,5 +1,6 @@
 import React from "react";
 import ThumbCard from "../app/components/ThumbCard";
+import Script from "next/script";
 
 export default function Home() {
     const festivals = ['Good Friday','Easter','Palm Sunday','Christmas'];
@@ -7,12 +8,13 @@ export default function Home() {
         <div className="">
             <div className="bg-indigo-100 py-6 md:py-12">
                 <div className="container px-4 mx-auto">
-                <ins class="adsbygoogle"
-                style={{display:"block"}}
+                <ins className="adsbygoogle"
+                style={{display:"inline-block", width:"360px", height:"300px"}}
                 data-ad-client="ca-pub-9831135411942124"
-                data-ad-slot="9040313622"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
+                data-ad-slot="6154129321"></ins>
+            <Script strategy="lazyOnload">
+            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+            </Script>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>

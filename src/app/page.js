@@ -1,12 +1,64 @@
 import React from "react";
 import ThumbCard from "../app/components/ThumbCard";
 import Script from "next/script";
+import { fetchData } from "@/fe-handlers/requestHandlers";
 
-export default function Home() {
+
+export const getData = async () => {
+    const limitPerPage = 8;
+    const randomNumber = Math.floor(Math.random() * 4) + 1; // Generates a random number between 1 and 80
+
+    const skip = randomNumber * limitPerPage;
+    let aggregationQuery = (match_cat)=> (
+        [
+            {
+              $match: { category: match_cat },
+            },
+            {
+              $facet: {
+                data: [
+                  {
+                    $lookup: {
+                      from: "lang_videos_related",
+                      localField: "id",
+                      foreignField: "cat_id",
+                      as: "related_data",
+                    },
+                  },
+                  { $sort: { id: 1 } },
+                  { $skip: skip },
+                  { $limit: limitPerPage },
+                ],
+                total_count: [
+                  {
+                    $group: {
+                      _id: null,
+                      count: { $sum: 1 },
+                    },
+                  },
+                ],
+              },
+            },
+          ]
+    );
+    const tamilData = await fetchData("lang_videos", aggregationQuery(1));
+    const malayalamData = await fetchData("lang_videos", aggregationQuery(2));
+    return {
+     tamilData : tamilData[0].data, 
+     malayalamData : malayalamData[0].data
+    };
+  };
+
+export default async function Home() {
+    const {tamilData,malayalamData} = await getData();
+    
+
     const festivals = ['Good Friday','Easter','Palm Sunday','Christmas'];
     return (
         <div className="">
             <div className="bg-indigo-100 py-6 md:py-12">
+            {/* {JSON.stringify(malayalamData)} */}
+    {/* {JSON.stringify(malayalamData)} */}
                 <div className="container px-4 mx-auto">
                 <ins className="adsbygoogle"
                 style={{display:"inline-block", width:"360px", height:"300px"}}
@@ -35,6 +87,11 @@ export default function Home() {
                 <div className="container px-4 mx-auto">
                     <h1 className="text-3xl font-bold text-center mb-5">தமிழ் கிறிஸ்தவ பாடல்கள்</h1>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-5">
+                    {
+                            (tamilData || []).map((eachData, index) => (
+                                <ThumbCard key={index} video={eachData} />
+                            ))
+                        }
                         {/* <ThumbCard />
                         <ThumbCard />
                         <ThumbCard />
@@ -42,6 +99,11 @@ export default function Home() {
                     </div>
                     <h2 className="text-3xl font-bold text-center mb-5">മലയാളം ക്രിസ്ത്യൻ ഗാനങ്ങൾ</h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {
+                            (malayalamData || []).map((eachData, index) => (
+                                <ThumbCard key={index} video={eachData} />
+                            ))
+                        }
                         {/* <ThumbCard />
                         <ThumbCard />
                         <ThumbCard />
